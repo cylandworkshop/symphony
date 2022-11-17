@@ -38,7 +38,7 @@ void loop() {
       prev[i] = 1;
     }
 
-    // out is high while low than TRIG_DELAY milliseconds pass after start of trigger
+    // out is high while less than TRIG_DELAY milliseconds pass after start of trigger
     digitalWrite(out[i], millis() - start_time[i] < TRIG_DELAY ? HIGH : LOW);
   }
 
