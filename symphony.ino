@@ -6,7 +6,7 @@ int prev[N] = {0,0,0,0};
 
 uint32_t start_time[N] = {0,0,0,0};
 
-const int TRIG_DELAY = 200;
+const int TRIG_DELAY = 15; // in milliseconds
 
 void setup() {
   Serial.begin(115200);
@@ -33,10 +33,12 @@ void loop() {
       prev[i] = 0;
     }
     if (r == HIGH && prev[i] == 0) {
+      // end of trigger
       digitalWrite(out[i], LOW);
       prev[i] = 1;
     }
 
+    // out is high while low than TRIG_DELAY milliseconds pass after start of trigger
     digitalWrite(out[i], millis() - start_time[i] < TRIG_DELAY ? HIGH : LOW);
   }
 
